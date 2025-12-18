@@ -1,6 +1,6 @@
 # Strudel AI Music Generator
 
-Generate [Strudel](https://strudel.cc/) live coding patterns using RAG (Retrieval Augmented Generation).
+Generate [Strudel](https://strudel.cc/) live coding patterns using RAG.
 
 ## How it Works
 
@@ -73,6 +73,6 @@ After adding patterns, delete `embeddings_cache.pkl` to rebuild the index.
 
 ## Tech Stack
 
-- **Embeddings**: sentence-transformers (all-MiniLM-L6-v2) - runs locally, no API needed
+- **Embeddings**: sentence-transformers (all-mpnet-base-v2) - runs locally, no API needed
 - **Generation**: Claude (Anthropic API)
 - **Web**: FastAPI + vanilla JS
