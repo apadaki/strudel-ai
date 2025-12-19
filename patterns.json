@@ -926,13 +926,688 @@
       "tempo": "slow",
       "mood": "emotional and deep",
       "code": "note(\"c2 ~ e2 ~ g2 ~ e2 c2\")\n  .sound(\"gm_cello\")\n  .room(.6)"
+    },
+    {
+      "id": "amen-chop-basic",
+      "name": "Chopped Amen Break",
+      "description": "Classic amen break chopped into 16 slices. Jungle and drum & bass foundation.",
+      "tags": ["amen", "break", "chop", "jungle", "dnb", "sample"],
+      "tempo": "fast",
+      "mood": "intense and classic",
+      "code": "samples('github:tidalcycles/dirt-samples')\ns(\"amen/4\").fit().chop(16).rev()"
+    },
+    {
+      "id": "amen-slice-pattern",
+      "name": "Sliced Break Pattern",
+      "description": "Amen break with custom slice sequencing. Rearranged breakbeat.",
+      "tags": ["amen", "slice", "break", "jungle", "pattern", "chopped"],
+      "tempo": "fast",
+      "mood": "energetic and chopped",
+      "code": "samples('github:tidalcycles/dirt-samples')\ns(\"amen/4\").fit().slice(8, \"0 1 <2 2*2> 3 [4 0] 5 6 7\")"
+    },
+    {
+      "id": "break-splice-glitch",
+      "name": "Glitched Splice Break",
+      "description": "Break with splice for pitched slices. Glitchy and stuttered.",
+      "tags": ["break", "splice", "glitch", "stutter", "pitched", "experimental"],
+      "tempo": "medium-fast",
+      "mood": "glitchy and chaotic",
+      "code": "samples('github:tidalcycles/dirt-samples')\ns(\"breaks165\").splice(8, \"0 1 [2 3 0]@2 3 0@2 7\")"
+    },
+    {
+      "id": "break-striate",
+      "name": "Striated Breaks",
+      "description": "Break split with striate for granular texture. Textural and fractured.",
+      "tags": ["break", "striate", "granular", "texture", "fractured", "experimental"],
+      "tempo": "medium",
+      "mood": "textural and fragmented",
+      "code": "samples('github:tidalcycles/dirt-samples')\ns(\"breaks125\").striate(8).slow(2)"
+    },
+    {
+      "id": "scrub-texture",
+      "name": "Scrubbed Sample",
+      "description": "Sample scrubbing for turntablist effects. DJ scratching simulation.",
+      "tags": ["scrub", "scratch", "DJ", "turntable", "sample", "effect"],
+      "tempo": "variable",
+      "mood": "dynamic and scratchy",
+      "code": "samples('github:tidalcycles/dirt-samples')\ns(\"amen/4\").fit().scrub(\"{0@3 0.25@2 0.7!2 <0.8:1.5>}%8\")"
+    },
+    {
+      "id": "fm-bass-deep",
+      "name": "FM Deep Bass",
+      "description": "Deep FM synthesis bass with harmonic richness. Subby and complex.",
+      "tags": ["FM", "bass", "deep", "synthesis", "sub", "complex"],
+      "tempo": "slow-medium",
+      "mood": "deep and rich",
+      "code": "note(\"<c1 c1 eb1 g1>\")\n  .sound(\"sine\")\n  .fm(4)\n  .fmh(2)\n  .lpf(400)\n  .gain(.7)"
+    },
+    {
+      "id": "fm-bell",
+      "name": "FM Bell Tone",
+      "description": "Bell-like FM synthesis. Metallic and resonant.",
+      "tags": ["FM", "bell", "metallic", "synthesis", "resonant", "percussion"],
+      "tempo": "medium",
+      "mood": "bright and metallic",
+      "code": "note(\"c5 e5 g5 c6\")\n  .sound(\"sine\")\n  .fm(8)\n  .fmh(1.4)\n  .decay(.5)\n  .sustain(0)\n  .room(.5)"
+    },
+    {
+      "id": "fm-evolving",
+      "name": "Evolving FM Pad",
+      "description": "FM pad with modulating harmonicity. Morphing and alive.",
+      "tags": ["FM", "pad", "evolving", "modulation", "synthesis", "ambient"],
+      "tempo": "slow",
+      "mood": "evolving and ethereal",
+      "code": "note(\"<[c3,e3,g3] [d3,f3,a3]>/2\")\n  .sound(\"sine\")\n  .fm(sine.range(1,6).slow(8))\n  .fmh(\"<1 1.5 2 1.5>\")\n  .attack(.5)\n  .release(2)\n  .room(.7)"
+    },
+    {
+      "id": "fm-harsh",
+      "name": "Harsh FM Lead",
+      "description": "Aggressive FM synthesis lead. Biting and industrial.",
+      "tags": ["FM", "lead", "harsh", "aggressive", "industrial", "synthesis"],
+      "tempo": "medium-fast",
+      "mood": "aggressive and biting",
+      "code": "note(\"c4 eb4 g4 c5\")\n  .sound(\"sine\")\n  .fm(16)\n  .fmh(3)\n  .lpf(3000)\n  .decay(.15)\n  .sustain(.2)"
+    },
+    {
+      "id": "lpenv-bass",
+      "name": "Filter Envelope Bass",
+      "description": "Bass with filter envelope for plucky attack. Punchy and dynamic.",
+      "tags": ["filter", "envelope", "bass", "lpenv", "punchy", "synth"],
+      "tempo": "medium",
+      "mood": "punchy and dynamic",
+      "code": "note(\"g1 bb1 <c2 eb2> d2\")\n  .sound(\"sawtooth\")\n  .lpf(400)\n  .lpenv(4)\n  .lpq(6)"
+    },
+    {
+      "id": "lpenv-stab",
+      "name": "Filter Envelope Stab",
+      "description": "Chord stab with filter envelope. Funky and percussive.",
+      "tags": ["filter", "envelope", "stab", "chord", "funky", "synth"],
+      "tempo": "medium-fast",
+      "mood": "funky and punchy",
+      "code": "note(\"<[c3,eb3,g3] [f3,ab3,c4]>\")\n  .sound(\"sawtooth\")\n  .lpf(300)\n  .lpa(.01)\n  .lpd(.2)\n  .lpenv(6)\n  .lpq(8)"
+    },
+    {
+      "id": "lpenv-sweep",
+      "name": "Filter Sweep Lead",
+      "description": "Lead with slow filter envelope sweep. Dramatic and expressive.",
+      "tags": ["filter", "envelope", "sweep", "lead", "dramatic", "synth"],
+      "tempo": "slow",
+      "mood": "dramatic and expressive",
+      "code": "note(\"c4 ~ e4 ~ g4 ~ e4 c4\")\n  .sound(\"sawtooth\")\n  .lpf(200)\n  .lpa(.5)\n  .lpd(1)\n  .lpenv(8)\n  .room(.5)"
+    },
+    {
+      "id": "additive-organ",
+      "name": "Additive Organ",
+      "description": "Organ-like sound using additive synthesis partials. Rich and harmonic.",
+      "tags": ["additive", "organ", "partials", "harmonic", "synthesis", "rich"],
+      "tempo": "medium",
+      "mood": "rich and full",
+      "code": "note(\"<[c3,e3,g3] [f3,a3,c4] [g3,b3,d4] [c3,e3,g3]>/2\")\n  .sound(\"user\")\n  .partials([1, 0, 0.5, 0, 0.3, 0, 0.1, 0, 0.05])\n  .room(.4)"
+    },
+    {
+      "id": "additive-flute",
+      "name": "Additive Flute",
+      "description": "Flute-like tone using sparse partials. Pure and breathy.",
+      "tags": ["additive", "flute", "partials", "pure", "synthesis", "breathy"],
+      "tempo": "slow",
+      "mood": "pure and airy",
+      "code": "note(\"c5 d5 e5 g5 e5 d5 c5 ~\")\n  .sound(\"user\")\n  .partials([1, 0, 0.1, 0, 0.05])\n  .attack(.1)\n  .release(.5)\n  .room(.5)"
+    },
+    {
+      "id": "tape-warble",
+      "name": "Tape Warble Effect",
+      "description": "Vintage tape warble using perlin noise on pitch. Lo-fi and nostalgic.",
+      "tags": ["tape", "warble", "lofi", "perlin", "vintage", "effect"],
+      "tempo": "medium",
+      "mood": "nostalgic and wobbly",
+      "code": "note(\"<c4 bb3 f3 eb3>*4\")\n  .add(note(perlin.range(0,.3)))\n  .sound(\"piano\")\n  .lpf(2000)\n  .room(.4)"
+    },
+    {
+      "id": "phasing-melody",
+      "name": "Phasing Pattern",
+      "description": "Steve Reich style phasing with slightly different speeds. Hypnotic and shifting.",
+      "tags": ["phasing", "reich", "minimal", "hypnotic", "shifting", "technique"],
+      "tempo": "medium",
+      "mood": "hypnotic and shifting",
+      "code": "note(\"<c d g a bb d c a g d bb a>*[6,6.1]\")\n  .sound(\"piano\")\n  .room(.3)"
+    },
+    {
+      "id": "layer-detuned",
+      "name": "Layered Detune",
+      "description": "Layered oscillators with detuning for thickness. Fat and wide.",
+      "tags": ["layer", "detune", "thick", "fat", "supersaw", "synth"],
+      "tempo": "medium",
+      "mood": "massive and wide",
+      "code": "note(\"<c3 eb3 f3 g3>\")\n  .add(note(\"0,.1,-.1\"))\n  .sound(\"sawtooth\")\n  .lpf(1500)\n  .room(.5)\n  .gain(.5)"
+    },
+    {
+      "id": "layer-octave",
+      "name": "Octave Layered Lead",
+      "description": "Lead with octave doubling for power. Bold and anthemic.",
+      "tags": ["layer", "octave", "lead", "bold", "anthemic", "synth"],
+      "tempo": "medium-fast",
+      "mood": "powerful and bold",
+      "code": "note(\"c4 e4 g4 c5\")\n  .layer(\n    x=>x.sound(\"sawtooth\"),\n    x=>x.add(note(12)).sound(\"square\").gain(.4)\n  )\n  .lpf(2500)\n  .room(.3)"
+    },
+    {
+      "id": "breakcore-chaos",
+      "name": "Breakcore Chaos",
+      "description": "Frantic breakcore with speed variations and stutters. Extreme and chaotic.",
+      "tags": ["breakcore", "chaos", "fast", "stutter", "extreme", "IDM"],
+      "tempo": "very fast",
+      "mood": "chaotic and intense",
+      "code": "samples('github:tidalcycles/dirt-samples')\ns(\"amen/4\").fit().chop(32)\n  .speed(\"<1 2 -1 1.5 -2>\")\n  .sometimesBy(.3, ply(\"2\"))\n  .fast(2)"
+    },
+    {
+      "id": "breakcore-gabber",
+      "name": "Gabber Kick",
+      "description": "Distorted gabber kick pattern. Hard and pummeling.",
+      "tags": ["gabber", "kick", "hardcore", "distorted", "hard", "rave"],
+      "tempo": "very fast",
+      "mood": "brutal and relentless",
+      "code": "s(\"bd*4\")\n  .bank(\"RolandTR909\")\n  .speed(1.2)\n  .shape(.6)\n  .gain(1.2)"
+    },
+    {
+      "id": "idm-glitch-melody",
+      "name": "IDM Glitch Melody",
+      "description": "Glitchy melodic pattern with random elements. Autechre-inspired.",
+      "tags": ["IDM", "glitch", "melody", "random", "autechre", "electronic"],
+      "tempo": "variable",
+      "mood": "complex and glitchy",
+      "code": "n(rand.range(0,12).segment(16))\n  .scale(\"C4:minor\")\n  .sound(\"square\")\n  .crush(\"<16 8 12>\")\n  .decay(.1)\n  .sustain(0)\n  .delay(.2)"
+    },
+    {
+      "id": "footwork-160",
+      "name": "Footwork Beat",
+      "description": "160 BPM footwork pattern with syncopated kicks. Chicago juke style.",
+      "tags": ["footwork", "juke", "160bpm", "chicago", "syncopated", "fast"],
+      "tempo": "very fast",
+      "mood": "frenetic and bouncy",
+      "code": "stack(\n  s(\"bd ~ ~ bd ~ bd ~ ~, ~ ~ ~ ~ sd ~ ~ ~\").bank(\"RolandTR808\"),\n  s(\"hh*8\").gain(\".6 .3 .5 .3\")\n).fast(1.33)"
+    },
+    {
+      "id": "footwork-vocal-chop",
+      "name": "Footwork Vocal Chop",
+      "description": "Stuttered vocal-style pattern. Sample-heavy juke feel.",
+      "tags": ["footwork", "vocal", "chop", "stutter", "juke", "sample"],
+      "tempo": "very fast",
+      "mood": "stuttered and hype",
+      "code": "stack(\n  s(\"bd ~ bd ~, ~ sd ~ sd\").bank(\"RolandTR808\"),\n  s(\"cp*4\").ply(\"<1 2 1 4>\").gain(.5)\n).fast(1.33)"
+    },
+    {
+      "id": "electro-cowbell",
+      "name": "Electro Cowbell",
+      "description": "Classic electro with 808 cowbell. Robot funk vibes.",
+      "tags": ["electro", "808", "cowbell", "robot", "funk", "breakdance"],
+      "tempo": "medium",
+      "mood": "robotic and funky",
+      "code": "stack(\n  s(\"bd ~ ~ ~ bd ~ ~ bd, ~ ~ ~ ~ ~ sd ~ ~\").bank(\"RolandTR808\"),\n  s(\"~ cb ~ cb ~ cb cb ~\").bank(\"RolandTR808\").gain(.6),\n  s(\"hh*8\").gain(.4)\n)"
+    },
+    {
+      "id": "electro-bass",
+      "name": "Electro Bass Zap",
+      "description": "Zappy electro bass with pitch slides. Kraftwerk influence.",
+      "tags": ["electro", "bass", "zap", "kraftwerk", "synth", "robotic"],
+      "tempo": "medium",
+      "mood": "robotic and punchy",
+      "code": "note(\"c2 c2 [c3 c2] c2\")\n  .sound(\"square\")\n  .lpf(800)\n  .decay(.15)\n  .sustain(0)\n  .slide(\"0 0 .5 0\")"
+    },
+    {
+      "id": "triphop-downtempo",
+      "name": "Trip-Hop Beat",
+      "description": "Slow downtempo beat with heavy drums. Bristol sound.",
+      "tags": ["triphop", "downtempo", "bristol", "slow", "heavy", "moody"],
+      "tempo": "slow",
+      "mood": "moody and heavy",
+      "code": "stack(\n  s(\"bd ~ [~ bd] ~, ~ sd ~ ~\").bank(\"RolandTR808\"),\n  s(\"hh*4\").gain(.3)\n).lpf(3000).room(.4).slow(1.2)"
+    },
+    {
+      "id": "triphop-bass",
+      "name": "Trip-Hop Bass",
+      "description": "Deep dubby bass for downtempo. Massive Attack style.",
+      "tags": ["triphop", "bass", "dub", "deep", "downtempo", "massive"],
+      "tempo": "slow",
+      "mood": "deep and dubby",
+      "code": "note(\"<c1 ~ c1 ~> <~ eb1 ~ g1>\")\n  .sound(\"sawtooth\")\n  .lpf(300)\n  .decay(.3)\n  .sustain(.4)\n  .room(.5)\n  .slow(1.2)"
+    },
+    {
+      "id": "triphop-full",
+      "name": "Full Trip-Hop Track",
+      "description": "Complete downtempo arrangement. Smoky and atmospheric.",
+      "tags": ["triphop", "full", "downtempo", "atmospheric", "arrangement", "moody"],
+      "tempo": "slow",
+      "mood": "atmospheric and moody",
+      "code": "stack(\n  s(\"bd ~ [~ bd] ~, ~ sd ~ ~, hh*4\").bank(\"RolandTR808\").gain(\".8 .6 .3\"),\n  note(\"<c1 ~ c1 eb1>\").sound(\"sawtooth\").lpf(300).gain(.6),\n  note(\"<[c4,eb4,g4] [bb3,d4,f4]>/2\").sound(\"gm_epiano1\").room(.5).gain(.3)\n).lpf(4000).slow(1.2)"
+    },
+    {
+      "id": "giant-steps-changes",
+      "name": "Giant Steps Changes",
+      "description": "Coltrane's Giant Steps chord progression. Complex jazz harmony.",
+      "tags": ["jazz", "coltrane", "giant-steps", "complex", "harmony", "chords"],
+      "tempo": "fast",
+      "mood": "complex and virtuosic",
+      "code": "chord(\"<B^7 D7 G^7 Bb7 Eb^7 Eb^7 Am7 D7 G^7 Bb7 Eb^7 F#7 B^7 B^7 Fm7 Bb7 Eb^7 Eb^7 Am7 D7 G^7 G^7 C#m7 F#7 B^7 B^7 Fm7 Bb7 Eb^7 Eb^7 C#m7 F#7>\")\n  .dict('ireal')\n  .voicing()\n  .s(\"gm_epiano1\")\n  .room(.4)"
+    },
+    {
+      "id": "autumn-leaves",
+      "name": "Autumn Leaves Changes",
+      "description": "Classic jazz standard progression. Timeless harmony.",
+      "tags": ["jazz", "standard", "autumn-leaves", "classic", "harmony", "chords"],
+      "tempo": "medium",
+      "mood": "classic and warm",
+      "code": "chord(\"<Am7 D7 G^7 C^7 F#m7b5 B7 Em7 Em7>\")\n  .dict('ireal')\n  .voicing()\n  .s(\"gm_epiano1\")\n  .room(.4)"
+    },
+    {
+      "id": "so-what-modal",
+      "name": "So What Modal",
+      "description": "Miles Davis modal jazz voicing. Cool and sophisticated.",
+      "tags": ["jazz", "modal", "miles", "cool", "voicing", "sophisticated"],
+      "tempo": "medium",
+      "mood": "cool and sophisticated",
+      "code": "note(\"<[d3,e3,g3,a3,b3] [d3,e3,g3,a3,b3] [d3,e3,g3,a3,b3] [d3,e3,g3,a3,b3] [eb3,f3,ab3,bb3,c4] [eb3,f3,ab3,bb3,c4] [d3,e3,g3,a3,b3] [d3,e3,g3,a3,b3]>/2\")\n  .sound(\"gm_epiano1\")\n  .room(.5)"
+    },
+    {
+      "id": "mario-coin",
+      "name": "Mario Coin Sound",
+      "description": "Classic video game coin pickup sound. Nostalgic 8-bit.",
+      "tags": ["videogame", "mario", "coin", "8bit", "chiptune", "effect"],
+      "tempo": "none",
+      "mood": "playful and rewarding",
+      "code": "note(\"[b5 e6]\")\n  .sound(\"square\")\n  .decay(.15)\n  .sustain(0)\n  .crush(8)"
+    },
+    {
+      "id": "mario-underground",
+      "name": "Underground Theme",
+      "description": "Mario underground theme inspired bass. Dark and bouncy.",
+      "tags": ["videogame", "mario", "underground", "8bit", "bass", "chiptune"],
+      "tempo": "medium",
+      "mood": "mysterious and bouncy",
+      "code": "note(\"c2 c3 a1 a2 bb1 bb2 [b1 b2]\")\n  .sound(\"square\")\n  .crush(6)\n  .lpf(1200)\n  .decay(.1)\n  .sustain(.3)"
+    },
+    {
+      "id": "zelda-fairy",
+      "name": "Zelda Fairy Fountain",
+      "description": "Ethereal arpeggio inspired by Zelda. Magical and shimmering.",
+      "tags": ["videogame", "zelda", "arpeggio", "magical", "ethereal", "chiptune"],
+      "tempo": "slow",
+      "mood": "magical and peaceful",
+      "code": "n(\"0 4 7 11 12 11 7 4\")\n  .scale(\"C4:major\")\n  .sound(\"triangle\")\n  .room(.6)\n  .delay(.3)\n  .gain(.5)"
+    },
+    {
+      "id": "tetris-theme",
+      "name": "Tetris Theme",
+      "description": "Korobeiniki folk melody. Classic game music.",
+      "tags": ["videogame", "tetris", "folk", "russian", "chiptune", "melody"],
+      "tempo": "medium-fast",
+      "mood": "energetic and catchy",
+      "code": "note(\"e5 b4 c5 d5 c5 b4 a4 a4 c5 e5 d5 c5 b4 c5 d5 e5 c5 a4 a4 ~\")\n  .sound(\"square\")\n  .crush(8)\n  .decay(.15)\n  .sustain(.1)"
+    },
+    {
+      "id": "noise-wind",
+      "name": "Wind Noise",
+      "description": "Filtered white noise simulating wind. Atmospheric texture.",
+      "tags": ["noise", "wind", "atmosphere", "texture", "ambient", "nature"],
+      "tempo": "none",
+      "mood": "atmospheric and natural",
+      "code": "s(\"white\")\n  .lpf(perlin.range(300,1500).slow(16))\n  .hpf(perlin.range(100,400).slow(8))\n  .gain(perlin.range(.03,.12).slow(4))"
+    },
+    {
+      "id": "noise-rain",
+      "name": "Rain Texture",
+      "description": "Pink noise with rhythmic modulation. Rain-like texture.",
+      "tags": ["noise", "rain", "texture", "ambient", "nature", "atmosphere"],
+      "tempo": "none",
+      "mood": "peaceful and natural",
+      "code": "s(\"pink\")\n  .lpf(3000)\n  .gain(perlin.range(.05,.15).fast(.5))\n  .room(.7)"
+    },
+    {
+      "id": "noise-vinyl",
+      "name": "Vinyl Crackle",
+      "description": "Crackle texture for vinyl simulation. Lo-fi warmth.",
+      "tags": ["noise", "vinyl", "crackle", "lofi", "texture", "warm"],
+      "tempo": "none",
+      "mood": "nostalgic and warm",
+      "code": "s(\"crackle\")\n  .density(.1)\n  .lpf(4000)\n  .gain(.15)"
+    },
+    {
+      "id": "korean-scale",
+      "name": "Korean Pentatonic",
+      "description": "Melody using Korean traditional scale. Serene and flowing.",
+      "tags": ["korean", "pentatonic", "world", "asian", "serene", "traditional"],
+      "tempo": "slow",
+      "mood": "serene and flowing",
+      "code": "n(\"0 2 5 7 9 7 5 2\")\n  .scale(\"C4:major pentatonic\")\n  .sound(\"gm_koto\")\n  .room(.5)\n  .delay(.2)"
+    },
+    {
+      "id": "arabic-maqam",
+      "name": "Arabic Maqam",
+      "description": "Middle Eastern maqam hijaz scale. Exotic and emotive.",
+      "tags": ["arabic", "maqam", "hijaz", "world", "exotic", "middle-eastern"],
+      "tempo": "medium",
+      "mood": "exotic and emotive",
+      "code": "n(\"0 1 4 5 7 8 10 12 10 8 7 5 4 1 0 ~\")\n  .scale(\"D4:phrygian dominant\")\n  .sound(\"gm_oboe\")\n  .room(.5)"
+    },
+    {
+      "id": "flamenco-rhythm",
+      "name": "Flamenco Rhythm",
+      "description": "Spanish flamenco-inspired rhythm. Passionate and fiery.",
+      "tags": ["flamenco", "spanish", "rhythm", "passionate", "world", "guitar"],
+      "tempo": "medium-fast",
+      "mood": "passionate and fiery",
+      "code": "stack(\n  s(\"bd ~ ~ bd ~ bd ~ ~ bd ~ ~ ~\"),\n  s(\"~ ~ cp ~ ~ ~ ~ ~ cp ~ cp ~\").gain(.6),\n  note(\"[e3,a3,c4] ~ ~ [e3,a3,c4] ~ [e3,b3,d4] ~ ~ [e3,a3,c4] ~ ~ ~\")\n    .sound(\"gm_acoustic_guitar_nylon\").gain(.5)\n).bank(\"RolandTR808\")"
+    },
+    {
+      "id": "irish-jig",
+      "name": "Irish Jig",
+      "description": "Traditional Irish jig rhythm in 6/8. Lively and dancing.",
+      "tags": ["irish", "jig", "celtic", "6-8", "dance", "folk"],
+      "tempo": "fast",
+      "mood": "lively and dancing",
+      "code": "n(\"0 2 4 5 4 2\")\n  .scale(\"D4:mixolydian\")\n  .sound(\"gm_flute\")\n  .room(.4)"
+    },
+    {
+      "id": "gamelan-bells",
+      "name": "Gamelan Bells",
+      "description": "Indonesian gamelan-inspired metallic tones. Mystical and resonant.",
+      "tags": ["gamelan", "indonesian", "bells", "metallic", "world", "mystical"],
+      "tempo": "slow",
+      "mood": "mystical and resonant",
+      "code": "n(\"<0 5 3 7 2 5 0 3>\")\n  .scale(\"C4:pelog\")\n  .sound(\"gm_vibraphone\")\n  .room(.7)\n  .decay(2)"
+    },
+    {
+      "id": "samba-rhythm",
+      "name": "Samba Rhythm",
+      "description": "Brazilian samba percussion pattern. Festive and energetic.",
+      "tags": ["samba", "brazilian", "percussion", "festive", "latin", "dance"],
+      "tempo": "fast",
+      "mood": "festive and energetic",
+      "code": "stack(\n  s(\"bd ~ bd ~\"),\n  s(\"~ sd ~ sd\").gain(.7),\n  s(\"hh*16\").gain(\".4 .2 .3 .2\"),\n  s(\"rim(3,8)\").gain(.5)\n).bank(\"RolandTR808\")"
+    },
+    {
+      "id": "off-echo-pattern",
+      "name": "Off Function Echo",
+      "description": "Using off to create echo/canon effect. Layered and rich.",
+      "tags": ["off", "echo", "canon", "technique", "layered", "pattern"],
+      "tempo": "medium",
+      "mood": "layered and flowing",
+      "code": "n(\"0 2 4 7\")\n  .scale(\"C4:minor\")\n  .off(1/8, x=>x.add(12).gain(.5))\n  .off(1/4, x=>x.add(7).gain(.3))\n  .sound(\"piano\")\n  .room(.5)"
+    },
+    {
+      "id": "jux-reverse",
+      "name": "Jux Reverse Stereo",
+      "description": "Pattern with reversed version panned opposite. Wide stereo.",
+      "tags": ["jux", "stereo", "reverse", "technique", "wide", "spatial"],
+      "tempo": "medium",
+      "mood": "wide and spatial",
+      "code": "n(\"0 3 5 7 10 7 5 3\")\n  .scale(\"C4:minor\")\n  .sound(\"sawtooth\")\n  .lpf(2000)\n  .jux(rev)\n  .room(.4)"
+    },
+    {
+      "id": "chunk-variation",
+      "name": "Chunk Variation",
+      "description": "Using chunk to apply function to pattern sections. Dynamic variation.",
+      "tags": ["chunk", "variation", "technique", "dynamic", "transform", "pattern"],
+      "tempo": "medium",
+      "mood": "varied and dynamic",
+      "code": "s(\"bd sd bd [sd cp]\")\n  .bank(\"RolandTR909\")\n  .chunk(4, fast(2))"
+    },
+    {
+      "id": "every-variation",
+      "name": "Every N Variation",
+      "description": "Applying effect every nth cycle. Evolving pattern.",
+      "tags": ["every", "variation", "technique", "evolving", "cycle", "pattern"],
+      "tempo": "medium",
+      "mood": "evolving and dynamic",
+      "code": "s(\"bd sd bd sd, hh*8\")\n  .bank(\"RolandTR909\")\n  .every(4, fast(2))\n  .every(3, rev)"
+    },
+    {
+      "id": "sometimes-random",
+      "name": "Sometimes Random",
+      "description": "Probabilistic pattern variation. Unpredictable and alive.",
+      "tags": ["sometimes", "random", "probability", "technique", "alive", "pattern"],
+      "tempo": "medium",
+      "mood": "unpredictable and organic",
+      "code": "s(\"bd sd bd cp\")\n  .bank(\"RolandTR909\")\n  .sometimes(ply(2))\n  .sometimesBy(.3, speed(\"1.5\"))"
+    },
+    {
+      "id": "mask-mute",
+      "name": "Mask Pattern Muting",
+      "description": "Using mask to mute parts of pattern. Sparse and dramatic.",
+      "tags": ["mask", "mute", "sparse", "technique", "dramatic", "pattern"],
+      "tempo": "medium",
+      "mood": "sparse and dramatic",
+      "code": "stack(\n  s(\"bd*4\"),\n  s(\"hh*8\").mask(\"<1 1 0 1>\")\n).bank(\"RolandTR909\")"
+    },
+    {
+      "id": "degradeBy-glitch",
+      "name": "Degrade Glitch",
+      "description": "Random event dropping for glitchy feel. Broken and stuttered.",
+      "tags": ["degrade", "glitch", "random", "broken", "stutter", "technique"],
+      "tempo": "medium",
+      "mood": "glitchy and broken",
+      "code": "s(\"bd sd bd sd, hh*16\")\n  .bank(\"RolandTR909\")\n  .degradeBy(.3)"
+    },
+    {
+      "id": "superimpose-layer",
+      "name": "Superimpose Layers",
+      "description": "Overlaying transformed versions. Dense and complex.",
+      "tags": ["superimpose", "layer", "technique", "dense", "complex", "pattern"],
+      "tempo": "medium",
+      "mood": "dense and rich",
+      "code": "n(\"0 2 4 7\")\n  .scale(\"C4:minor\")\n  .superimpose(add(7), add(12))\n  .sound(\"piano\")\n  .room(.4)"
+    },
+    {
+      "id": "struct-rhythm",
+      "name": "Struct Rhythm Apply",
+      "description": "Applying rhythmic structure to continuous pattern. Rhythmic shaping.",
+      "tags": ["struct", "rhythm", "technique", "shape", "pattern", "gate"],
+      "tempo": "medium",
+      "mood": "rhythmic and shaped",
+      "code": "note(\"c3\")\n  .sound(\"sawtooth\")\n  .lpf(sine.range(400,2000).fast(4))\n  .struct(\"x ~ x x ~ x ~ x\")"
+    },
+    {
+      "id": "vibrato-expressive",
+      "name": "Expressive Vibrato",
+      "description": "Deep vibrato for expressive lead. Singing and emotive.",
+      "tags": ["vibrato", "expressive", "lead", "singing", "emotive", "technique"],
+      "tempo": "slow",
+      "mood": "expressive and singing",
+      "code": "note(\"c4 ~ e4 ~ g4 ~ e4 c4\")\n  .sound(\"sawtooth\")\n  .vib(\"6:8\")\n  .lpf(2000)\n  .room(.5)"
+    },
+    {
+      "id": "crush-lofi",
+      "name": "Bitcrush Lo-Fi",
+      "description": "Bitcrushed sound for lo-fi aesthetic. Crunchy and degraded.",
+      "tags": ["bitcrush", "lofi", "crunchy", "degraded", "effect", "texture"],
+      "tempo": "medium",
+      "mood": "crunchy and nostalgic",
+      "code": "note(\"<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4]>/2\")\n  .sound(\"piano\")\n  .crush(8)\n  .room(.3)"
+    },
+    {
+      "id": "vowel-formant",
+      "name": "Vowel Formant Sweep",
+      "description": "Formant filter morphing through vowels. Vocal and robotic.",
+      "tags": ["vowel", "formant", "vocal", "filter", "robotic", "talking"],
+      "tempo": "medium",
+      "mood": "vocal and quirky",
+      "code": "note(\"c3 eb3 g3 c4\")\n  .sound(\"sawtooth\")\n  .vowel(\"<a e i o u>\")\n  .room(.3)"
+    },
+    {
+      "id": "squiz-distort",
+      "name": "Squiz Distortion",
+      "description": "Squiz waveshaping for harsh tones. Aggressive and crunchy.",
+      "tags": ["squiz", "distortion", "harsh", "aggressive", "waveshape", "effect"],
+      "tempo": "medium",
+      "mood": "harsh and aggressive",
+      "code": "s(\"bd sd bd sd\")\n  .bank(\"RolandTR909\")\n  .squiz(\"<2 4 8 4>\")"
+    },
+    {
+      "id": "coarse-texture",
+      "name": "Coarse Texture",
+      "description": "Coarse sample rate reduction. Gritty and textured.",
+      "tags": ["coarse", "texture", "gritty", "sample-rate", "effect", "lofi"],
+      "tempo": "medium",
+      "mood": "gritty and textured",
+      "code": "note(\"c3 e3 g3 c4\")\n  .sound(\"sawtooth\")\n  .coarse(\"<4 8 16 32>\")\n  .lpf(2000)"
+    },
+    {
+      "id": "shape-overdrive",
+      "name": "Shape Overdrive",
+      "description": "Waveshaping distortion for warmth. Warm and driven.",
+      "tags": ["shape", "overdrive", "distortion", "warm", "driven", "effect"],
+      "tempo": "medium",
+      "mood": "warm and overdriven",
+      "code": "note(\"<c2 c2 eb2 g2>\")\n  .sound(\"sawtooth\")\n  .lpf(600)\n  .shape(.4)\n  .gain(.6)"
+    },
+    {
+      "id": "leslie-organ",
+      "name": "Leslie Organ",
+      "description": "Organ with Leslie speaker modulation. Swirling and vintage.",
+      "tags": ["leslie", "organ", "modulation", "vintage", "swirling", "effect"],
+      "tempo": "medium",
+      "mood": "vintage and swirling",
+      "code": "note(\"<[c3,e3,g3] [f3,a3,c4] [g3,b3,d4] [c3,e3,g3]>/2\")\n  .sound(\"gm_rock_organ\")\n  .leslie(1)\n  .room(.4)"
+    },
+    {
+      "id": "phaser-swirl",
+      "name": "Phaser Swirl",
+      "description": "Phaser effect for swirling motion. Psychedelic and moving.",
+      "tags": ["phaser", "swirl", "psychedelic", "modulation", "effect", "movement"],
+      "tempo": "medium",
+      "mood": "psychedelic and swirling",
+      "code": "note(\"<[c4,e4,g4] [d4,f4,a4]>/2\")\n  .sound(\"sawtooth\")\n  .lpf(2000)\n  .phaser(4)\n  .room(.4)"
+    },
+    {
+      "id": "pan-auto",
+      "name": "Auto Pan",
+      "description": "Automatic panning for stereo movement. Wide and animated.",
+      "tags": ["pan", "stereo", "movement", "auto", "wide", "spatial"],
+      "tempo": "medium",
+      "mood": "wide and moving",
+      "code": "n(\"0 2 4 7 9 7 4 2\")\n  .scale(\"C4:minor\")\n  .sound(\"piano\")\n  .pan(sine.slow(2))\n  .room(.4)"
+    },
+    {
+      "id": "compressor-pump",
+      "name": "Compressor Pump",
+      "description": "Heavy compression for pumping effect. Loud and punchy.",
+      "tags": ["compressor", "pump", "loud", "punchy", "dynamics", "effect"],
+      "tempo": "medium-fast",
+      "mood": "punchy and loud",
+      "code": "stack(\n  s(\"bd*4\"),\n  note(\"[c3,eb3,g3]\").sound(\"sawtooth\").lpf(1500)\n).bank(\"RolandTR909\").compressor(-20,10,0.01,0.1)"
+    },
+    {
+      "id": "ambient-swells",
+      "name": "Ambient Swells",
+      "description": "Slowly swelling ambient pad. Breathing and alive.",
+      "tags": ["ambient", "swell", "breathing", "pad", "slow", "evolving"],
+      "tempo": "very slow",
+      "mood": "breathing and peaceful",
+      "code": "note(\"<[c3,e3,g3,b3] [d3,f3,a3,c4]>/8\")\n  .sound(\"sawtooth\")\n  .lpf(perlin.range(400,1200).slow(16))\n  .gain(sine.range(.2,.5).slow(8))\n  .attack(2)\n  .release(4)\n  .room(.9)"
+    },
+    {
+      "id": "drone-evolving",
+      "name": "Evolving Drone",
+      "description": "Deep drone with subtle movement. Meditative and infinite.",
+      "tags": ["drone", "evolving", "meditative", "deep", "ambient", "infinite"],
+      "tempo": "none",
+      "mood": "meditative and deep",
+      "code": "note(\"c1\")\n  .sound(\"sawtooth\")\n  .lpf(perlin.range(100,300).slow(32))\n  .gain(perlin.range(.2,.4).slow(8))\n  .room(.95)\n  .attack(8)\n  .release(16)"
+    },
+    {
+      "id": "ambient-texture-layers",
+      "name": "Layered Ambient Texture",
+      "description": "Multiple layered ambient textures. Rich and immersive.",
+      "tags": ["ambient", "texture", "layers", "rich", "immersive", "soundscape"],
+      "tempo": "none",
+      "mood": "immersive and rich",
+      "code": "stack(\n  note(\"c3\").sound(\"sine\").gain(perlin.range(.1,.3).slow(8)).room(.9),\n  note(\"g3\").sound(\"triangle\").gain(perlin.range(.05,.15).slow(12)).room(.95),\n  s(\"white\").lpf(perlin.range(200,800).slow(16)).gain(.02)\n)"
+    },
+    {
+      "id": "berlin-school-seq",
+      "name": "Berlin School Sequence",
+      "description": "Motorik sequencer pattern. Kosmische and hypnotic.",
+      "tags": ["berlin-school", "sequencer", "motorik", "kosmische", "krautrock", "hypnotic"],
+      "tempo": "medium",
+      "mood": "hypnotic and driving",
+      "code": "stack(\n  note(\"c3 c3 e3 c3 g3 c3 e3 c3\")\n    .sound(\"sawtooth\")\n    .lpf(sine.range(500,2000).slow(8))\n    .decay(.15).sustain(.1),\n  s(\"bd*4, hh*8\").bank(\"RolandTR808\").gain(.6)\n)"
+    },
+    {
+      "id": "arpeggio-random",
+      "name": "Random Arpeggio",
+      "description": "Generative arpeggio with random notes. Ever-changing melody.",
+      "tags": ["arpeggio", "random", "generative", "evolving", "algorithmic", "melody"],
+      "tempo": "medium-fast",
+      "mood": "evolving and unpredictable",
+      "code": "n(rand.range(0,7).segment(8))\n  .scale(\"C4:minor\")\n  .sound(\"triangle\")\n  .decay(.2)\n  .sustain(0)\n  .room(.4)\n  .delay(.2)"
+    },
+    {
+      "id": "chord-strum",
+      "name": "Strummed Chord",
+      "description": "Guitar-like chord strum using off. Natural and rhythmic.",
+      "tags": ["chord", "strum", "guitar", "natural", "rhythm", "technique"],
+      "tempo": "medium",
+      "mood": "natural and warm",
+      "code": "n(\"0,2,4,7\")\n  .scale(\"C3:minor\")\n  .off(.02, x=>x)\n  .off(.04, x=>x)\n  .off(.06, x=>x)\n  .sound(\"gm_acoustic_guitar_nylon\")\n  .room(.4)"
+    },
+    {
+      "id": "power-chord",
+      "name": "Power Chord Riff",
+      "description": "Distorted power chord progression. Heavy and rock.",
+      "tags": ["power-chord", "rock", "distorted", "heavy", "guitar", "riff"],
+      "tempo": "medium",
+      "mood": "heavy and powerful",
+      "code": "note(\"<[c2,g2,c3] [bb1,f2,bb2] [ab1,eb2,ab2] [bb1,f2,bb2]>\")\n  .sound(\"sawtooth\")\n  .lpf(1500)\n  .shape(.5)\n  .room(.3)"
+    },
+    {
+      "id": "wt-bass",
+      "name": "Wavetable Bass",
+      "description": "Wavetable synthesis bass with movement. Modern and rich.",
+      "tags": ["wavetable", "bass", "modern", "synthesis", "movement", "rich"],
+      "tempo": "medium",
+      "mood": "modern and powerful",
+      "code": "note(\"<c1 c1 eb1 g1>\")\n  .s(\"wt_dbass\")\n  .n(\"<0 2 4 6>\")\n  .lpf(sine.range(300,1200).slow(4))\n  .gain(.7)"
+    },
+    {
+      "id": "wt-pad",
+      "name": "Wavetable Pad",
+      "description": "Evolving wavetable pad with scanning. Lush and animated.",
+      "tags": ["wavetable", "pad", "evolving", "scanning", "lush", "synthesis"],
+      "tempo": "slow",
+      "mood": "lush and evolving",
+      "code": "note(\"<[c3,e3,g3] [d3,f3,a3]>/4\")\n  .s(\"wt_flute\")\n  .n(sine.range(0,8).slow(8))\n  .attack(.5)\n  .release(2)\n  .room(.7)"
+    },
+    {
+      "id": "sidechain-pump",
+      "name": "Sidechain Pumping",
+      "description": "Fake sidechain compression effect. EDM pumping feel.",
+      "tags": ["sidechain", "pump", "EDM", "compression", "effect", "dance"],
+      "tempo": "medium-fast",
+      "mood": "pumping and energetic",
+      "code": "stack(\n  s(\"bd*4\").bank(\"RolandTR909\"),\n  note(\"[c3,e3,g3]\")\n    .sound(\"sawtooth\")\n    .lpf(2000)\n    .gain(saw.range(.1,.7).fast(4))\n)"
+    },
+    {
+      "id": "rave-stab",
+      "name": "Rave Stab",
+      "description": "Classic 90s rave chord stab. Euphoric and nostalgic.",
+      "tags": ["rave", "stab", "90s", "chord", "euphoric", "nostalgia"],
+      "tempo": "fast",
+      "mood": "euphoric and nostalgic",
+      "code": "note(\"<[~ [c4,e4,g4,c5]] [~ [d4,f4,a4,d5]] [~ [e4,g4,b4,e5]] [~ [c4,e4,g4,c5]]>\")\n  .sound(\"sawtooth\")\n  .lpf(3000)\n  .decay(.2)\n  .sustain(0)\n  .room(.4)"
+    },
+    {
+      "id": "hoover-bass",
+      "name": "Hoover Bass",
+      "description": "Classic hoover/mentasm sound. Rave and aggressive.",
+      "tags": ["hoover", "mentasm", "rave", "bass", "aggressive", "90s"],
+      "tempo": "fast",
+      "mood": "aggressive and rave",
+      "code": "note(\"<c2 [c2 c3] eb2 [g2 c3]>\")\n  .sound(\"sawtooth,sawtooth,sawtooth\")\n  .detune(\"0 7 12\")\n  .lpf(sine.range(400,2000).fast(2))\n  .gain(.5)"
     }
   ],
   "metadata": {
-    "version": "3.0",
-    "total_patterns": 110,
+    "version": "4.0",
+    "total_patterns": 185,
     "description": "Comprehensive Strudel pattern database for AI music generation",
-    "categories": ["drums", "bass", "pads", "arpeggios", "melodies", "chords", "world", "experimental", "ambient", "dance"],
+    "categories": ["drums", "bass", "pads", "arpeggios", "melodies", "chords", "world", "experimental", "ambient", "dance", "breaks", "synthesis", "techniques", "effects"],
     "sample_banks": ["RolandTR909", "RolandTR808", "RolandTR707"],
     "gm_sounds": [
       "gm_acoustic_bass", "gm_slap_bass_1", "gm_synth_bass_1",
@@ -942,6 +1617,8 @@
       "gm_accordion", "gm_rock_organ",
       "gm_flute", "gm_clarinet", "gm_oboe", "gm_alto_sax",
       "gm_trumpet", "gm_cello", "gm_koto", "gm_shamisen"
-    ]
+    ],
+    "synthesis_types": ["FM", "additive", "wavetable", "subtractive"],
+    "techniques": ["chop", "slice", "splice", "striate", "scrub", "lpenv", "jux", "off", "every", "sometimes", "mask", "degrade", "superimpose", "struct"]
   }
 }

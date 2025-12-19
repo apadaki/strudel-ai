@@ -405,24 +405,6 @@ HTML_TEMPLATE = """
             color: #fff;
         }
 
-        .strudel-link {
-            text-align: center;
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: rgba(255, 0, 217, 0.1);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 0, 217, 0.2);
-        }
-
-        .strudel-link a {
-            color: #ff00d9;
-            text-decoration: none;
-        }
-
-        .strudel-link a:hover {
-            text-decoration: underline;
-        }
-
         .hidden {
             display: none;
         }
@@ -462,7 +444,7 @@ HTML_TEMPLATE = """
             <div class="controls">
                 <div class="slider-group">
                     <label>Creativity: <span class="slider-value" id="temp-value">0.8</span></label>
-                    <input type="range" id="temperature" min="0.1" max="1.5" step="0.1" value="0.8">
+                    <input type="range" id="temperature" min="0.1" max="1" step="0.05" value="0.8">
                 </div>
                 <button class="btn-primary" id="generate-btn" onclick="generate()">
                     Generate Music
@@ -492,19 +474,15 @@ HTML_TEMPLATE = """
                 <span class="output-title">Generated Strudel Code</span>
                 <div class="output-actions">
                     <button class="btn-secondary btn-small" onclick="copyCode()">Copy</button>
-                    <button class="btn-secondary btn-small" onclick="openInStrudel()">Open in Strudel</button>
+                    <button class="btn-primary btn-small" onclick="openInStrudel()">▶ Play in Strudel</button>
                 </div>
             </div>
             <pre class="code-output" id="code-output"></pre>
             <div class="examples-used" id="examples-used"></div>
         </div>
 
-        <div class="strudel-link hidden" id="strudel-link">
-            <p>Paste your code at <a href="https://strudel.cc/" target="_blank">strudel.cc</a> to hear it!</p>
-        </div>
-
         <footer>
-            <p>Powered by RAG + Claude | Patterns from <a href="https://strudel.cc/" target="_blank">Strudel</a></p>
+            <p><a href="https://strudel.cc/" target="_blank">strudel.cc</a></p>
         </footer>
     </div>
 
@@ -532,12 +510,10 @@ HTML_TEMPLATE = """
             const btn = document.getElementById('generate-btn');
             const loading = document.getElementById('loading');
             const output = document.getElementById('output-section');
-            const strudelLink = document.getElementById('strudel-link');
 
             btn.disabled = true;
             loading.classList.add('active');
             output.classList.add('hidden');
-            strudelLink.classList.add('hidden');
 
             try {
                 const response = await fetch('/api/generate', {
@@ -563,7 +539,6 @@ HTML_TEMPLATE = """
                     ).join('');
 
                 output.classList.remove('hidden');
-                strudelLink.classList.remove('hidden');
 
             } catch (error) {
                 alert('Error generating code: ' + error.message);
@@ -573,14 +548,41 @@ HTML_TEMPLATE = """
             }
         }
 
-        function copyCode() {
-            navigator.clipboard.writeText(generatedCode).then(() => {
-                alert('Code copied to clipboard!');
-            });
+        async function copyCode() {
+            try {
+                await navigator.clipboard.writeText(generatedCode);
+                // Show feedback on the button
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.background = 'rgba(0, 255, 157, 0.3)';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 1500);
+            } catch (err) {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = generatedCode;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.background = 'rgba(0, 255, 157, 0.3)';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 1500);
+            }
         }
 
         function openInStrudel() {
-            // Encode the code for URL
             const encoded = encodeURIComponent(generatedCode);
             window.open(`https://strudel.cc/?code=${encoded}`, '_blank');
         }

@@ -5,87 +5,31 @@ Uses semantic search to find relevant patterns, then generates new code with Cla
 
 import anthropic
 from embeddings import PatternSearcher
+from strudel_context import FULL_CONTEXT
 
 
-SYSTEM_PROMPT = """You are an expert Strudel (https://strudel.cc/) live coding musician and creative coder.
+SYSTEM_PROMPT = f"""You are an expert Strudel (https://strudel.cc/) live coding musician, composer, and creative coder.
 
-Strudel is a JavaScript-based live coding environment for music, based on TidalCycles patterns.
+{FULL_CONTEXT}
 
-## SAMPLE BANKS (use with .bank())
-- RolandTR909, RolandTR808, RolandTR707, RolandTR505, RolandCompurhythm1000
+---
 
-## DRUM SAMPLES (use with s() or sound())
-- bd (bass drum), sd (snare), hh (hi-hat), oh (open hi-hat)
-- cp (clap), rim (rimshot), cr (crash), rd (ride)
-- ht, mt, lt (high/mid/low tom), perc (percussion)
+## YOUR TASK
 
-## GM SOUNDS (General MIDI - use with .sound())
-- gm_acoustic_bass, gm_synth_bass_1, gm_synth_bass_2
-- gm_epiano1, gm_epiano2 (electric piano)
-- gm_acoustic_guitar_nylon, gm_electric_guitar_muted
-- gm_xylophone, gm_marimba, gm_vibraphone
-- gm_string_ensemble_1, gm_synth_strings_1
-- gm_accordion, gm_rock_organ, gm_church_organ
-- gm_violin, gm_cello, gm_flute, gm_trumpet
+Generate COMPLETE, MUSICAL Strudel code that sounds good and runs directly in strudel.cc.
 
-## SYNTH SOUNDS (use with .sound())
-- sawtooth, square, triangle, sine (basic waveforms)
-- piano (built-in piano sample)
+### CRITICAL REQUIREMENTS
 
-## MINI-NOTATION
-- `*N` - repeat N times: "bd*4" = four bass drums
-- `[a b]` - subdivide: "[bd sd]" = both fit in one beat
-- `<a b c>` - alternate each cycle: "<bd sd hh>" plays one per cycle
-- `~` - rest/silence
-- `@N` - elongate: "c@3 e" = c takes 3 beats, e takes 1
-- `!N` - replicate: "bd!3" = "bd bd bd" (without speeding up)
-- `,` - play simultaneously: "bd, hh" = layered
-- `(n,k)` - Euclidean rhythm: "bd(3,8)" = 3 hits spread over 8 steps
-- `?` - random remove (50%): "hh*8?"
-- `|` - random choice: "bd | sd | hh"
+1. **CREATE LONGER PATTERNS** - Use .slow(4), .slow(8), or /4, /8 notation for longer phrases
+2. **LAYER MULTIPLE ELEMENTS** - Use stack() with drums + bass + chords + melody
+3. **ADD MOVEMENT** - Use sine/perlin modulation on filters: .lpf(sine.range(400,2000).slow(8))
+4. **VARY OVER TIME** - Use .every(), .sometimes() for evolution
+5. **USE MUSICAL PROGRESSIONS** - Not just single chords, but progressions over multiple cycles
+6. **CREATE PROPER MELODIES** - Stepwise motion, rhythmic variety, not just random notes
 
-## SCALES (use with .scale())
-- n("0 2 4 6").scale("C:minor") - scale degrees to notes
-- Common scales: major, minor, dorian, mixolydian, pentatonic, blues, ritusen
+### OUTPUT FORMAT
 
-## CHORDS (use with chord() and .voicing())
-- chord("<Dm7 G7 C^7>").voicing() - jazz chord voicings
-- .dict('ireal') - use iReal chord dictionary
-
-## EFFECTS
-- .lpf(freq), .hpf(freq) - filters (freq in Hz)
-- .lpq(amount), .hpq(amount) - filter resonance
-- .room(0-1) - reverb amount
-- .delay(0-1) - delay amount
-- .gain(0-1) - volume
-- .attack(sec), .decay(sec), .sustain(0-1), .release(sec) - ADSR envelope
-- .crush(1-16) - bitcrusher
-- .speed(amount) - playback speed (negative = reverse)
-- .vowel("<a e i o u>") - formant filter
-
-## MODULATION
-- sine.range(min, max).slow(cycles) - sine LFO
-- perlin.range(min, max).slow(cycles) - noise modulation
-- rand - random value per event
-
-## TEMPO
-- setcps(0.5) - cycles per second (default)
-- setcpm(120/4) - cycles per minute / 4
-
-## STRUCTURE
-- stack(...) - layer multiple patterns
-- s("pattern").bank("BankName") - short form for sound()
-- note("c3 e3 g3").sound("piano") - note with sound
-
-When generating code:
-1. Study the example patterns provided - they show correct syntax
-2. Use ONLY valid sample names from the lists above
-3. Layer sounds with stack() for fuller arrangements
-4. Use effects tastefully to enhance the mood
-5. Match the tempo and energy to the requested vibe
-6. Keep code clean and runnable - no syntax errors
-
-Output ONLY valid Strudel code that runs directly in strudel.cc. No explanations."""
+Output ONLY valid Strudel code. No explanations, no markdown code blocks."""
 
 
 def format_examples(patterns: list[tuple[dict, float]]) -> str:
@@ -110,7 +54,7 @@ Code:
 def generate_strudel_code(
     prompt: str,
     searcher: PatternSearcher,
-    num_examples: int = 4,
+    num_examples: int = 6,
     model: str = "claude-sonnet-4-20250514",
     temperature: float = 0.8,
 ) -> dict:
@@ -140,30 +84,83 @@ def generate_strudel_code(
     examples_text = format_examples(similar_patterns)
 
     # Build the generation prompt
-    user_prompt = f"""Here are some example Strudel patterns for reference:
+    user_prompt = f"""Here are some example Strudel patterns for reference and syntax guidance:
 
 {examples_text}
 
-Now compose ORIGINAL Strudel code for this request:
-"{prompt}"
+---
 
-IMPORTANT - Be creative! You should:
-- Invent NEW note sequences, melodies, and chord progressions
-- Create DIFFERENT rhythmic patterns (don't copy the exact rhythms above)
-- Choose your own tempo, key, and feel
-- Mix and match techniques from different examples
-- Adjust filter frequencies, envelope times, effect amounts creatively
-- Add your own musical ideas - surprising variations, interesting textures
+## YOUR REQUEST: "{prompt}"
 
-The examples show valid SYNTAX and available sounds - use them as a reference for what's possible, not as templates to copy. Generate something fresh that matches the vibe requested.
+---
 
-Output only the Strudel code, ready to paste into strudel.cc."""
+## REQUIREMENTS FOR THIS GENERATION:
+
+1. **MUST BE A COMPLETE TRACK** with multiple layers using stack():
+   - Drums (kick, snare, hats)
+   - Bass line (with filter movement)
+   - Chords or pads (with effects)
+   - Optional: melody or arpeggios
+
+2. **MUST BE LONGER** - create phrases that span multiple cycles:
+   - Use .slow(4) or .slow(8) on melodic elements
+   - Use "/2" or "/4" in mini-notation for longer progressions
+   - Example: `note("<c2 f2 g2 ab2>/2")` = 2-cycle bass line
+
+3. **MUST HAVE MOVEMENT** - nothing should be static:
+   - Filter sweeps: `.lpf(sine.range(400, 2000).slow(8))`
+   - Gain modulation: `.gain(perlin.range(.4, .8).slow(4))`
+   - Use .every() for periodic variations
+
+4. **MUST BE MUSICAL**:
+   - Use proper scales: `.scale("C:minor")` or `.scale("D:dorian")`
+   - Create real melodies with stepwise motion and occasional leaps
+   - Include harmonic progressions, not just single chords
+
+5. **MUST INCLUDE EFFECTS**:
+   - .room() for space
+   - .delay() for echoes
+   - .lpf() for warmth
+   - .lpenv() for punch on basses
+
+## EXAMPLE OF WHAT A GOOD OUTPUT LOOKS LIKE:
+
+```
+stack(
+  s("bd*4, ~ cp, [~ hh]*4, ~ ~ ~ oh").bank("RolandTR909").gain(.8),
+
+  note("<c2 c2 f2 g2>/2")
+    .sound("sawtooth")
+    .lpf(sine.range(200, 800).slow(8))
+    .lpenv(3)
+    .gain(.6),
+
+  chord("<Cm7 Cm7 Fm9 Gsus4>/2")
+    .voicing()
+    .s("gm_epiano1")
+    .room(.5)
+    .gain(.35),
+
+  n("<0 2 4 7 9 7 4 2>/4")
+    .scale("C4:minor")
+    .sound("triangle")
+    .lpf(2000)
+    .room(.4)
+    .delay(.2)
+    .every(4, fast(2))
+    .gain(.3)
+)
+```
+
+Now generate ORIGINAL code for: "{prompt}"
+
+Output ONLY the Strudel code, no explanations."""
 
     # Call Claude
     client = anthropic.Anthropic()
     response = client.messages.create(
         model=model,
-        max_tokens=1024,
+        max_tokens=2048,  # Increased for longer, more complete tracks
         system=SYSTEM_PROMPT,
         messages=[
             {"role": "user", "content": user_prompt}
@@ -236,14 +233,25 @@ Code:
 And some related patterns for inspiration:
 {format_examples(similar)}
 
-Create a variation of the original pattern that: {variation_prompt}
+---
 
-Keep the core vibe but make it distinctly different. Output only the new Strudel code."""
+## CREATE A VARIATION
+
+Your task: {variation_prompt}
+
+Requirements:
+1. Keep the core vibe/mood but make it distinctly different
+2. Make it LONGER - use .slow() to extend phrases
+3. Add LAYERS - if original is simple, add bass/chords/melody
+4. Add MOVEMENT - filter sweeps, modulation, .every() variations
+5. Include proper effects - room, delay, lpf
+
+Output ONLY the Strudel code, no explanations."""
 
     client = anthropic.Anthropic()
     response = client.messages.create(
         model=model,
-        max_tokens=1024,
+        max_tokens=2048,
         system=SYSTEM_PROMPT,
         messages=[
             {"role": "user", "content": user_prompt}
