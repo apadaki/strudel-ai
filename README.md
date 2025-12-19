@@ -2,6 +2,8 @@
 
 Generate [Strudel](https://strudel.cc/) live coding patterns using RAG.
 
+![demo image](./demo.png)
+
 ## Setup
 
 ```bash
